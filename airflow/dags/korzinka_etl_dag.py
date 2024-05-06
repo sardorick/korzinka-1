@@ -16,19 +16,21 @@ default_args = {
     'is_paused_upon_creation': False
 }
 
+# DAG creation
 dag = DAG(
     dag_id='korzinka_click_processing',
     default_args=default_args,
     schedule_interval="@daily" 
 ) 
 
+# First task to extract data
 extract_task = PythonOperator(
     task_id='extract_json_data',
     python_callable=extract_json,
     dag=dag
 )
 
-
+# Second task to transform data
 transform_task = PythonOperator(
         task_id='transform_click_data',
         python_callable=transform_data,
@@ -42,7 +44,7 @@ create_tables_task = PostgresOperator(
         dag=dag
     )
 
-    # Task to load CSV data using COPY command
+# Third Task to load CSV data using COPY command
 load_data_task = PostgresOperator(
         task_id='load_clicks_data',
         postgres_conn_id='analytics_db',  

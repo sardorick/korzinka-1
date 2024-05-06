@@ -5,7 +5,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=analytics_db
+      - POSTGRES_DB=korzinka_clicks
     ports:
       - "5432:5432"
 

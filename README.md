@@ -69,3 +69,5 @@ browser	varchar	User's web browser
 browser_version	varchar	Web browser version
 device_type	varchar	Device type (e.g., 'Desktop', 'Mobile')
 publisher_category	varchar	Categorized publisher source
+
+<image>ER.png<image>

@@ -1,10 +1,8 @@
--- publishers table (unchanged)
 CREATE TABLE publishers (
     publisher_id SERIAL PRIMARY KEY, 
     publisher_name TEXT UNIQUE NOT NULL 
 );
 
--- clicks table
 CREATE TABLE clicks (
     click_id SERIAL PRIMARY KEY,
     publisher_id INTEGER REFERENCES publishers(publisher_id),
