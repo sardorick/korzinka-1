@@ -17,7 +17,7 @@ So, to analyze the data, I had to structure the data into SQL tables which can t
 
 extract.py: Python script responsible for fetching the raw JSON click data.
 transform.py: Python script that cleans, transforms, and prepares the data for loading.
-dag.py: The Airflow DAG defining the ETL workflow steps.
+korzinka_etl_dag.py: The Airflow DAG defining the ETL workflow steps.
 data: A directory to store the raw JSON (clicks.json) and the transformed CSV (clicks_transformed.csv).
 sql: Contains a SQL script (create_tables.sql) for initializing the PostgreSQL tables.
 
@@ -71,3 +71,8 @@ device_type	varchar	Device type (e.g., 'Desktop', 'Mobile')
 publisher_category	varchar	Categorized publisher source
 
 <img src="ER.png" alt="Alt text">
+
+## Overall
+Overall, the project proved to be an interesting but rather complex task that requires time. I would have preferred to work and expand the capabilities and robustness of the project if there was more time available, since it is possible.
+
+Also, since I am using a Macbook based on M1, it is quite tricky to set up Apache Airflow. There are some bugs that need to be changed and I had to use some workarounds to get the project completed. 
