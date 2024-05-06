@@ -1,23 +1,14 @@
 import pandas as pd
 import user_agents
-import ipinfo  
-from dotenv import load_dotenv
-import os
-import requests
-import socket
+
+
+INPUT_FILE = "/Users/szokirov/Documents/GitHub/korzinka-1/data/clicks.json"
+OUTPUT_FILE = "/Users/szokirov/Documents/GitHub/korzinka-1/data/clicks_transformed.csv"  
 
 
 
-INPUT_FILE = "data/clicks.json"
-OUTPUT_FILE = "data/clicks_transformed.csv"  
-
-#Load .env (Pushed to repo for display reasons, but it is not supposed to be pushed to repo)
-load_dotenv()
 
 
-# IPINFO_ACCESS_TOKEN = os.getenv('IPINFO_TOKEN')
-IPINFO_ACCESS_TOKEN = 'ec5991895d7c1f'
-handler = ipinfo.getHandler(IPINFO_ACCESS_TOKEN)
 
 def transform_data():
     df = pd.read_json(INPUT_FILE)
@@ -41,27 +32,6 @@ def transform_data():
     df = df.drop(['os_name', 'os_version', 'device_type'], axis=1)
     df = df.join(temp_df) 
 
-    # # Get geodata using IP Adress. 
-    # def extract_ipv4(ip_string):
-    #     if ip_string.startswith('::ffff:'):
-    #         return ip_string[7:]  # Extract the IPv4 part
-    #     else:
-    #         return ip_string 
-
-    # # Assumption for this data is that it can be used to track user activity based on their map location and improvements can be made in marketing, for example
-    # def get_geo_data(ip_address):
-    #     try:
-    #         response = requests.get(f"https://ipinfo.io/{ip_address}?token={IPINFO_ACCESS_TOKEN}")
-    #         response.raise_for_status()  
-    #         data = response.json()
-    #         return data.get('latitude'), data.get('longitude'), data.get('region') 
-    #     except requests.exceptions.RequestException as e:
-    #         print(f"Error processing IP: {ip_address}. Error: {e}")
-    #         return None, None, None 
-
-    # df['ipv4'] = df['click_ipv6'].apply(extract_ipv4)
-    # df[['latitude', 'longitude', 'region']] = df['ipv4'].apply(get_geo_data) 
-    # df.fillna(method='ffill', inplace=True) 
 
 
     def categorize_publisher(publisher_name):
