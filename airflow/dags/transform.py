@@ -14,11 +14,14 @@ def transform_data():
     df = pd.read_json(INPUT_FILE)
     df = df.join(pd.json_normalize(df.pop('data')))  
 
+    # Convert the time stamp to correct type
     df['click_timestamp'] = df['click_timestamp'].astype(int) 
     df['click_datetime'] = pd.to_datetime(df['click_timestamp'], unit='s') 
+    # Extract date and time to individual columns
     df['click_date'] = df['click_datetime'].dt.date
     df['click_time'] = df['click_datetime'].dt.time
 
+    # Parse the user agent in columns
     def parse_user_agent(ua_string):
         ua = user_agents.parse(ua_string)
         return pd.Series([ua.os.family, ua.os.version_string, ua.browser.family, ua.browser.version_string, ua.device.family], 
@@ -33,7 +36,7 @@ def transform_data():
     df = df.join(temp_df) 
 
 
-
+    # Standarized publishers
     def categorize_publisher(publisher_name):
         if 'Korzinka' in publisher_name:
             return 'Korzinka'
@@ -59,6 +62,7 @@ def transform_data():
     df['city'] = df['city'].str.replace('Tashkent city', 'Tashkent')
 
 
+    # Save the transformed file into a CSV
     df.to_csv(OUTPUT_FILE, index=False) 
 
 

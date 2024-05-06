@@ -73,6 +73,6 @@ publisher_category	varchar	Categorized publisher source
 <img src="ER.png" alt="Alt text">
 
 ## Overall
-Overall, the project proved to be an interesting but rather complex task that requires time. I would have preferred to work and expand the capabilities and robustness of the project if there was more time available, since it is possible.
+Overall, the project proved to be an interesting but rather complex task that requires time. I would have preferred to work and expand the capabilities and robustness of the project if there was more time available, since it is possible. For example, I could set up the project in a Docker environment where it is even more robust and scalable. 
 
 Also, since I am using a Macbook based on M1, it is quite tricky to set up Apache Airflow. There are some bugs that need to be changed and I had to use some workarounds to get the project completed. 

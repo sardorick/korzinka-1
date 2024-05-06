@@ -2,9 +2,6 @@ from airflow.models import DAG
 from airflow.operators.python import PythonOperator
 from airflow.utils.dates import days_ago
 from airflow.providers.postgres.operators.postgres import PostgresOperator
-
-
-
 from transform import transform_data
 from extract import extract_json
 
@@ -37,6 +34,7 @@ transform_task = PythonOperator(
         dag=dag
     )
 
+# Create tables in PostgreSQL
 create_tables_task = PostgresOperator(
         task_id='create_tables',
         postgres_conn_id='analytics_db', 
@@ -53,5 +51,5 @@ load_data_task = PostgresOperator(
         dag=dag
     )
 
-# task dependencies 
+# tasks order 
 extract_task >> transform_task >> create_tables_task >> load_data_task
